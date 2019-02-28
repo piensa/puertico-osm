@@ -36,10 +36,10 @@ while getopts ":c:v" flag; do
 done
 
 # database connection variables
-DB_NAME="osm"
-DB_HOST=""
-DB_PORT=""
-DB_USER=""
+DB_NAME="puertico"
+DB_HOST="localhost"
+DB_PORT="5432"
+DB_USER="puertico"
 DB_PW=""
 
 # Check if we're using a config file
@@ -70,7 +70,7 @@ for i in "${!dataurls[@]}"; do
 	echo $shape_file
 
 	# reproject data to webmercator (3857) and insert into our database
-	OGR_ENABLE_PARTIAL_REPROJECTION=true ogr2ogr -overwrite -t_srs EPSG:3857 -nlt PROMOTE_TO_MULTI -f PostgreSQL PG:"dbname='$DB_NAME' host='$DB_HOST' port='$DB_PORT' user='$DB_USER' password='$DB_PW'" $shape_file
+	OGR_ENABLE_PARTIAL_REPROJECTION=true ogr2ogr -overwrite -t_srs EPSG:4326 -nlt PROMOTE_TO_MULTI -f PostgreSQL PG:"dbname='$DB_NAME' host='$DB_HOST' port='$DB_PORT' user='$DB_USER' password='$DB_PW'" $shape_file
 
 	# clean up
 	rm -rf $i/ $i.zip

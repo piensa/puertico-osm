@@ -2,32 +2,33 @@
 # .env-example or simply hardcode correct values for your installation.
 
 [webserver]
-port = ":${TEGOLA_PORT}"
+port = ":9090"
 
 # Tegola offers three tile caching strategies: "file", "redis", and "s3"
 [cache]
-type = "${CACHE_TYPE}"
+type = "file"
+basepath = "/x/tegola"
 
 # FileCache. See https://github.com/go-spatial/tegola/tree/master/cache/file
 # RedisCache. See https://github.com/go-spatial/tegola/tree/master/cache/redis
 # S3Cache. See https://github.com/go-spatial/tegola/tree/master/cache/s3
-bucket = "${S3CACHE_BUCKET}"
-basepath = "${S3CACHE_BASEPATH}"
-region = "${S3CACHE_REGION}"
-aws_access_key_id = "${S3CACHE_AWS_ACCESS_KEY_ID}"
-aws_secret_access_key = "${S3CACHE_AWS_SECRET_ACCESS_KEY}"
+#bucket = "tegola"
+#basepath = "/"
+#region = "us-east-2"
+#aws_access_key_id = "ehsan"
+#aws_secret_access_key = "QBTXPQWgVyf775uL"
 
 
 #   OpenStreetMap (OSM)
 [[providers]]
 name = "osm"
 type = "postgis"
-host = "${OSM_DB_HOST}"
-port = "${OSM_DB_PORT}"
-database = "${OSM_DB_NAME}"
-user = "${OSM_DB_USER}"
-password = "${OSM_DB_PASS}"
-
+host = "localhost"
+port = 5432
+database = "puertico"
+user = "puertico"
+password = ""
+srid = 4326
 	[[providers.layers]]
 	name = "land_8-20"
 	geometry_fieldname = "geometry"
@@ -206,12 +207,12 @@ password = "${OSM_DB_PASS}"
 [[providers]]
 name = "ne"
 type = "postgis"
-host = "${NE_DB_HOST}"
-port = "${NE_DB_PORT}"
-database = "${NE_DB_NAME}"
-user = "${NE_DB_USER}"
-password = "${NE_DB_PASS}"
-
+host = "localhost"
+port = 5432
+database = "puertico"
+user = "puertico"
+password = ""
+srid = 4326
 	[[providers.layers]]
 	name = "ne_110m_populated_places"
 	geometry_fieldname = "geometry"

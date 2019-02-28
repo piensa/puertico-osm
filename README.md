@@ -277,3 +277,18 @@ Man made, historic, military, power, barriers, piers, etc.
 If you run this import, please send in a PR to report your import machine specs and how long it takes.
 
 **@peldhose**: 11.30 hours on a Google cloud server with 8 vCPU, 30GB RAM and 1TB storage (400GB used)
+
+
+# puertico
+
+imposm import -connection postgis://puertico@localhost/puertico -mapping imposm3.json -read colombia-latest.osm.pbf -write -overwritecache -srid 4326
+
+imposm import -connection postgis://puertico@localhost/puertico -mapping imposm3.json -deployproduction
+
+## changed srid to 4326
+
+bash natural_earth.sh
+bash osm_land.sh
+
+psql -U puertico -h localhost -d puertico -a -f postgis_helpers.sql
+psql -U puertico -h localhost -d puertico -a -f postgis_index.sql
